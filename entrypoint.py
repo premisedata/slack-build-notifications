@@ -3,7 +3,7 @@ import json
 from slack_sdk.webhook import WebhookClient
 from slack_sdk.errors import SlackApiError
 
-url = "https://hooks.slack.com/services/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"
+url = sys.argv[4] 
 webhook = WebhookClient(url)
 
 def message_builder(status, project, build):
