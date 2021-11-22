@@ -9,6 +9,7 @@ webhook = WebhookClient(url)
 def message_builder(status, project, build):
     success_color = "#4BB543"
     failure_color = "#FF0000"
+    # need to account for different statuses? cloud run vs maven
     message = [
         {
             "color": success_color,
