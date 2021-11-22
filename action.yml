@@ -1,0 +1,12 @@
+name: 'Slack Build Notifcations'
+description: 'Notify slack channel on gcp builds' 
+inputs:
+  status:
+    required: true
+  project:
+    required: true
+  build:
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
