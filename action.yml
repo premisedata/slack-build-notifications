@@ -1,0 +1,26 @@
+name: 'Premise Slack Build Notifications'
+description: 'Notify a slack channel on gcp builds'
+branding:
+  icon: activity
+  color: orange
+inputs:
+  outcome:
+    required: true
+  project:
+    required: true
+  build:
+    required: true
+  webhook:
+    required: true
+  repo:
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.outcome }}
+    - ${{ inputs.project }}
+    - ${{ inputs.build }}
+    - ${{ inputs.webhook }}
+    - ${{ inputs.repo }}
+    - ${{ inputs.org }}
