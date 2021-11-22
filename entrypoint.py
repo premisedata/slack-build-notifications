@@ -42,6 +42,7 @@ def message_builder(status, project, build):
             ],
         }
     ]
+    return message
 
 
 if __name__ == "__main__":
@@ -50,7 +51,7 @@ if __name__ == "__main__":
     build = sys.argv[3]
 
     try:
-        formatted_message = message_builder(status)
+        formatted_message = message_builder(status, project, build)
         response = webhook.send(
             attachments=formatted_message
         )
