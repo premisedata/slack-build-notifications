@@ -9,6 +9,15 @@ inputs:
     required: true
   webhook:
     required: true
+  repo:
+    required: true
 runs:
   using: 'docker'
   image: 'Dockerfile'
+  args:
+    - ${{ inputs.status }}
+    - ${{ inputs.project }}
+    - ${{ inputs.build }}
+    - ${{ inputs.webhook }}
+    - ${{ inputs.repo }}
+    - ${{ inputs.org }}
