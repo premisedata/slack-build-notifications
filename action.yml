@@ -1,7 +1,7 @@
 name: 'Slack Build Notifcations'
 description: 'Notify slack channel on gcp builds' 
 inputs:
-  status:
+  outcome:
     required: true
   project:
     required: true
@@ -15,7 +15,7 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.status }}
+    - ${{ inputs.outcome }}
     - ${{ inputs.project }}
     - ${{ inputs.build }}
     - ${{ inputs.webhook }}
