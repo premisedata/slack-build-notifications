@@ -50,7 +50,7 @@ jobs:
         region: ${{ env.REGION }}
         suffix: ${{ github.sha }}
     - name: send slack message
-      uses: premisedata/slack-build-notifications@v1
+      uses: premisedata/slack-build-notifications@v1.0
       with:
         outcome: ${{ steps.deploy.outcome }}
         project: ${{ env.GCLOUD_PROJECT }}
