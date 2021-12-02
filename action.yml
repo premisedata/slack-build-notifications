@@ -1,5 +1,8 @@
-name: 'Slack Build Notifcations'
-description: 'Notify slack channel on gcp builds' 
+name: 'Premise Slack Build Notifcations'
+description: 'Notify a slack channel on gcp builds'
+branding:
+  icon: activity
+  color: orange
 inputs:
   outcome:
     required: true
