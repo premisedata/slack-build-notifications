@@ -27,7 +27,7 @@ def message_builder(outcome, project, build, repo, version):
             "blocks": [
                 {
                     "type": "section",
-                    "text": {"type": "mrkdwn", "text": f"outcome: {outcome}"},
+                    "text": {"type": "mrkdwn", "text": f"Outcome: {outcome.capitalize()}"},
                 },
                 {
                     "type": "section",

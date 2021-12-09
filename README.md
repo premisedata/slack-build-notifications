@@ -12,6 +12,7 @@ The parameters will be passed to the action through `with`
 | build  | build number - passed as github-provided env var  | Required  |
 | webhook  | webhook url for slack app  | Required  |
 | repo  | name of github repo  | Required  |
+| version  | release version of the service  | Optional  |
 
 ## Usage
 
