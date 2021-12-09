@@ -7,7 +7,7 @@ The parameters will be passed to the action through `with`
 
 | Name  | Description  | Required?  |
 |---|---|---|
-| status  | build status  | Required  |
+| outcome  | build outcome  | Required  |
 | project  | GCP project  | Required  |
 | build  | build number - passed as github-provided env var  | Required  |
 | webhook  | webhook url for slack app  | Required  |
@@ -43,15 +43,16 @@ jobs:
         service_account_key: ${{ secrets.GCP_SA_KEY }}
         export_default_credentials: true
     - name: Deploy to Cloud Run
+      id: deploy
       uses: google-github-actions/deploy-cloudrun@v0.6.0
       with:
         service: ${{ env.SERVICE }}
         region: ${{ env.REGION }}
         suffix: ${{ github.sha }}
     - name: send slack message
-      uses: premisedata/slack-build-notifications@v1
+      uses: premisedata/slack-build-notifications@v1.0
       with:
-        status: ${{ steps.deploy.outputs.url }}
+        outcome: ${{ steps.deploy.outcome }}
         project: ${{ env.GCLOUD_PROJECT }}
         build: ${{ github.run_number }}
         webhook: https://hooks.slack.com/services/your_slack_webhook
