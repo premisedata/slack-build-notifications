@@ -51,10 +51,11 @@ jobs:
         suffix: ${{ github.sha }}
     - name: send slack message
       uses: premisedata/slack-build-notifications@v1.0
+      if: always()
       with:
         outcome: ${{ steps.deploy.outcome }}
         project: ${{ env.GCLOUD_PROJECT }}
-        build: ${{ github.run_number }}
+        build: ${{ github.run_id }}
         webhook: https://hooks.slack.com/services/your_slack_webhook
         repo: ${{ env.GITHUB_REPOSITORY }}
 ```
