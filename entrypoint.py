@@ -36,7 +36,7 @@ def message_builder(outcome, project, build, repo):
                     "elements": [
                         {
                             "type": "button",
-                            "text": {"type": "plain_text", "text": "project"},
+                            "text": {"type": "plain_text", "text": f"Project: {project}"},
                             "value": f"https://console.cloud.google.com/home/dashboard?project={project}",
                             "url": f"https://console.cloud.google.com/home/dashboard?project={project}",
                         },
