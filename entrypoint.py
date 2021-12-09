@@ -20,18 +20,18 @@ def message_builder(outcome, project, build, repo, version):
     if version == "none":
         service_info = service
     else:
-        service_info = f"{service} {version}"
+        service_info = f"{service} `{version}`"
     message = [
         {
             "color": color,
             "blocks": [
                 {
                     "type": "section",
-                    "text": {"type": "mrkdwn", "text": f"outcome: {outcome}"},
+                    "text": {"type": "mrkdwn", "text": f"Service: {service_info}"},
                 },
                 {
                     "type": "section",
-                    "text": {"type": "mrkdwn", "text": f"Service: {service_info}"},
+                    "text": {"type": "mrkdwn", "text": f"Outcome: {outcome.capitalize()}"},
                 },
                 {"type": "divider"},
                 {
