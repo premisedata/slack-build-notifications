@@ -6,7 +6,7 @@ from slack_sdk.errors import SlackApiError
 url = sys.argv[4] 
 webhook = WebhookClient(url)
 
-def message_builder(outcome, project, build, repo):
+def message_builder(outcome, project, build, repo, version):
     color = "#000000"
     success_color = "#4BB543"
     failure_color = "#FF0000"
@@ -15,9 +15,12 @@ def message_builder(outcome, project, build, repo):
         color = success_color
     if outcome == "failure":
         color = failure_color
-    # need to account for different outcomees? cloud run vs maven
     org = repo.split("/")[0]
     service = repo.split("/")[1]
+    if version == "none":
+        service_info = service
+    else:
+        service_info = f"{service} {version}"
     message = [
         {
             "color": color,
@@ -28,7 +31,7 @@ def message_builder(outcome, project, build, repo):
                 },
                 {
                     "type": "section",
-                    "text": {"type": "mrkdwn", "text": f"Service: {service}"},
+                    "text": {"type": "mrkdwn", "text": f"Service: {service_info}"},
                 },
                 {"type": "divider"},
                 {
@@ -59,9 +62,10 @@ if __name__ == "__main__":
     project = sys.argv[2]
     build = sys.argv[3]
     repo = sys.argv[5]
+    version = sys.argv[6]
 
     try:
-        formatted_message = message_builder(outcome, project, build, repo)
+        formatted_message = message_builder(outcome, project, build, repo, version)
         response = webhook.send(
             attachments=formatted_message
         )

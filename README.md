@@ -58,4 +58,5 @@ jobs:
         build: ${{ github.run_id }}
         webhook: https://hooks.slack.com/services/your_slack_webhook
         repo: ${{ env.GITHUB_REPOSITORY }}
+        version: ${{ env.VERSION }}
 ```
