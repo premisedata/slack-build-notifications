@@ -6,7 +6,7 @@ from slack_sdk.errors import SlackApiError
 url = sys.argv[4] 
 webhook = WebhookClient(url)
 
-def message_builder(outcome, project, build, repo, version):
+def message_builder(outcome, project, build, repo, version, notes):
     color = "#000000"
     success_color = "#4BB543"
     failure_color = "#FF0000"
@@ -28,6 +28,10 @@ def message_builder(outcome, project, build, repo, version):
                 {
                     "type": "section",
                     "text": {"type": "mrkdwn", "text": f"Service: {service_info}"},
+                },
+                {
+                    "type": "section",
+                    "text": {"type": "mrkdwn", "text": f"{notes} "},
                 },
                 {
                     "type": "section",
@@ -63,9 +67,10 @@ if __name__ == "__main__":
     build = sys.argv[3]
     repo = sys.argv[5]
     version = sys.argv[6]
+    notes = sys.argv[7]
 
     try:
-        formatted_message = message_builder(outcome, project, build, repo, version)
+        formatted_message = message_builder(outcome, project, build, repo, version, notes)
         response = webhook.send(
             attachments=formatted_message
         )

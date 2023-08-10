@@ -13,6 +13,7 @@ The parameters will be passed to the action through `with`
 | webhook  | webhook url for slack app  | Required  |
 | repo  | name of github repo  | Required  |
 | version  | release version of the service  | Optional  |
+| notes  | release description | Optional  |
 
 ## Usage
 
@@ -60,4 +61,5 @@ jobs:
         webhook: https://hooks.slack.com/services/your_slack_webhook
         repo: ${{ env.GITHUB_REPOSITORY }}
         version: ${{ env.VERSION }}
+        notes: ${{ github.GITHUB_REF_NAME }}
 ```
