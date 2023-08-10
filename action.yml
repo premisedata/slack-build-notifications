@@ -17,6 +17,9 @@ inputs:
   version:
     required: false
     default: none
+  notes:
+    required: false
+    default: none
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -27,3 +30,4 @@ runs:
     - ${{ inputs.webhook }}
     - ${{ inputs.repo }}
     - ${{ inputs.version }}
+    - ${{ inputs.notes }}
